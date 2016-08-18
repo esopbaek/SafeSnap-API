@@ -1,2 +1,3 @@
-class Physician < ActiveRecord::Base
+class Physician < User
+  has_many :patients
 end

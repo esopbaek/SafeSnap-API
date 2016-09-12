@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :patients
-    resources :images
-    resources :categories
+    resources :physicians do
+      member do
+        resources :patients
+      end
+    end
+    # resources :images
+    # resources :sets
   end
 end

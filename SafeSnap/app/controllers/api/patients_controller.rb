@@ -1,8 +1,13 @@
 class Api::PatientsController < ApplicationController
-  def create
-    @patient = Patient.new
+  skip_before_filter :verify_authenticity_token
 
-    
+  def create
+    @patient = Patient.new(patient_params)
+    if @patient.save
+      render json: @patient
+    else
+
+    end    
   end
 
   def show

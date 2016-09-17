@@ -11,7 +11,9 @@ class Api::ImageSetsController < ApplicationController
   end
 
   def show
-   
+    @patient = Patient.find(params[:patient_id])
+    @image_set = @patient.image_sets.find(params[:id])
+    render json: @image_set
   end
 
   # def index

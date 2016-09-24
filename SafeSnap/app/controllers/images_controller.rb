@@ -2,7 +2,9 @@ class Api::ImagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def create
-    @image = Image.new(image_params)
+    @patient = Patient.find(params[:patient_id])
+    @image_sets = @patient.image_sets.find(params[:image_set_id])
+    @image = @image_sets.images.new(image_params)
     if @image.save
       render json: @image
     else
